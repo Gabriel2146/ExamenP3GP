@@ -8,13 +8,19 @@
         <local:MainViewModel/>
     </ContentPage.BindingContext>
     <StackLayout Padding="10">
-        
+        <Image
+         Source="purevessel.png"
+         HeightRequest="185"
+        Aspect="AspectFit"/>
+        <Label Text="a mi Gabriel Padilla me gusta este personaje porque representa: el inicio y el fin de la historia de su juego" />
+            
         <Button Text="Fetch Joke" Command="{Binding FetchJokeCommand}" />
         <ListView x:Name="JokesListView" ItemsSource="{Binding Jokes}" SelectedItem="{Binding SelectedJoke}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Vertical">
+                            
                             <Image Source="{Binding IconUrl}" HeightRequest="50" WidthRequest="50"/>
                             <Label Text="{Binding Value}" />
                         </StackLayout>
