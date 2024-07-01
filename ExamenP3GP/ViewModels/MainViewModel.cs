@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
+using SQLite;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Storage;
 using ExamenP3GP.Models;
-using CloudKit;
-using SQLite;
 
 namespace ExamenP3GP.ViewModels
 {
@@ -15,17 +17,18 @@ namespace ExamenP3GP.ViewModels
         private const string BaseUrl = "https://api.chucknorris.io/jokes/random";
         private ObservableCollection<JokeModel> _jokes;
         private JokeModel _selectedJoke;
+        private SQLiteAsyncConnection _database;
 
         public ObservableCollection<JokeModel> Jokes
         {
             get { return _jokes; }
-            set { _jokes = value; OnPropertyChanged("Jokes"); }
+            set { _jokes = value; OnPropertyChanged(nameof(Jokes)); }
         }
 
         public JokeModel SelectedJoke
         {
             get { return _selectedJoke; }
-            set { _selectedJoke = value; OnPropertyChanged("SelectedJoke"); }
+            set { _selectedJoke = value; OnPropertyChanged(nameof(SelectedJoke)); }
         }
 
         public ICommand FetchJokeCommand { get; }
@@ -34,8 +37,9 @@ namespace ExamenP3GP.ViewModels
         public MainViewModel()
         {
             FetchJokeCommand = new Command(async () => await FetchJoke());
-            SaveJokeCommand = new Command(SaveJoke);
+            SaveJokeCommand = new Command(async () => await SaveJoke());
             Jokes = new ObservableCollection<JokeModel>();
+            InitializeDatabase();
         }
 
         private async Task FetchJoke()
@@ -52,18 +56,18 @@ namespace ExamenP3GP.ViewModels
             }
         }
 
-        private void SaveJoke()
+        private async Task SaveJoke()
         {
-            if ( == null) return;
+            if (SelectedJoke == null) return;
 
-            await _database.InsertAsync();
+            await _database.InsertAsync(SelectedJoke);
         }
 
         private async void InitializeDatabase()
         {
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Chuck.db");
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "jokes.db");
             _database = new SQLiteAsyncConnection(databasePath);
-            await _database.CreateTableAsync<ChuckModel>();
+            await _database.CreateTableAsync<JokeModel>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,4 +75,5 @@ namespace ExamenP3GP.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-    }  
+    }
+}
