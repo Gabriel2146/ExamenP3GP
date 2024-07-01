@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamenP3GP", "ExamenP3GP\ExamenP3GP.csproj", "{A9C0BE09-D3F0-41EB-8C10-09A943344377}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9C0BE09-D3F0-41EB-8C10-09A943344377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C0BE09-D3F0-41EB-8C10-09A943344377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C0BE09-D3F0-41EB-8C10-09A943344377}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A9C0BE09-D3F0-41EB-8C10-09A943344377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C0BE09-D3F0-41EB-8C10-09A943344377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C0BE09-D3F0-41EB-8C10-09A943344377}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE5CA9D4-2005-454C-A3AE-BD89E224F222}
+	EndGlobalSection
+EndGlobal
